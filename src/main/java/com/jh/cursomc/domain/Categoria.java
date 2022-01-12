@@ -3,11 +3,19 @@ package com.jh.cursomc.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity // É uma annotation é usada para falar que essa classe vai ser uma entidade do JPA
 public class Categoria implements Serializable {
 
 
 	private static final long serialVersionUID = 1L;
 	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY) //Nessa annotation estou definindo uma estrategia de geração automatica do ID
 	private Integer id;
 	private String nome;
 	
