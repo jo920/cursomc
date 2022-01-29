@@ -15,12 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.jh.cursomc.domain.enums.TipoCliente;
 
 @Entity
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +32,7 @@ public class Cliente implements Serializable {
 	private String CpfouCnpj;
 	private Integer tipo;
 	
-	
+	@JsonManagedReference
 	@OneToMany(mappedBy="cliente")// estou falando qual o nome da classe que esta fazendo o relaciomento de um para muitos para ela	
 	private List<Endereco> enderecos = new ArrayList<>();
 	

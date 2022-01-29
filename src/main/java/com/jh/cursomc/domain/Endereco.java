@@ -10,11 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+	@JsonBackReference
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Nessa annotation estou definindo uma estrategia de geração automatica do ID
 	private Integer id;
@@ -24,7 +26,7 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 
-	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
