@@ -22,8 +22,7 @@ import com.jh.cursomc.domain.enums.TipoCliente;
 public class Cliente implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -31,17 +30,22 @@ public class Cliente implements Serializable {
 	private String email;
 	private String CpfouCnpj;
 	private Integer tipo;
-	
+
 	@JsonManagedReference
-	@OneToMany(mappedBy="cliente")// estou falando qual o nome da classe que esta fazendo o relaciomento de um para muitos para ela	
+	@OneToMany(mappedBy = "cliente") // estou falando qual o nome da classe que esta fazendo o relaciomento de um
+										// para muitos para ela
 	private List<Endereco> enderecos = new ArrayList<>();
-	
+
 	@ElementCollection
-	@CollectionTable(name = "TELEFONE") // estou criando uma tabela no banco que vai tratar esse relaciomento dos telefones
+	@CollectionTable(name = "TELEFONE") // estou criando uma tabela no banco que vai tratar esse relaciomento dos
+										// telefones
 	private Set<String> telefones = new HashSet<>();
-	
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Pedido> pedidos = new ArrayList<>();
+
 	public Cliente() {
-		
+
 	}
 
 	public Cliente(Integer id, String nome, String email, String cpfouCnpj, TipoCliente tipo) {
@@ -52,7 +56,6 @@ public class Cliente implements Serializable {
 		CpfouCnpj = cpfouCnpj;
 		this.tipo = tipo.getCod();
 	}
-	
 
 	public Integer getId() {
 		return id;
@@ -110,7 +113,14 @@ public class Cliente implements Serializable {
 		this.telefones = telefones;
 	}
 
-	
+	public List<Pedido> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Pedido> pedidos) {
+		this.pedidos = pedidos;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
@@ -127,7 +137,5 @@ public class Cliente implements Serializable {
 		Cliente other = (Cliente) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
-	
+
 }

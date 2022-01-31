@@ -16,7 +16,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 public class Endereco implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@JsonBackReference
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY) //Nessa annotation estou definindo uma estrategia de geração automatica do ID
 	private Integer id;
