@@ -15,8 +15,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.jh.cursomc.domain.enums.TipoCliente;
 
 @Entity
@@ -32,7 +31,7 @@ public class Cliente implements Serializable {
 	private String CpfouCnpj;
 	private Integer tipo;
 
-	@JsonManagedReference
+	
 	@OneToMany(mappedBy = "cliente") // estou falando qual o nome da classe que esta fazendo o relaciomento de um para muitos para ela
 	private List<Endereco> enderecos = new ArrayList<>();
 
@@ -41,7 +40,7 @@ public class Cliente implements Serializable {
 										// telefones
 	private Set<String> telefones = new HashSet<>();
 
-	@JsonBackReference
+	@JsonIgnore
 	@OneToMany(mappedBy = "cliente")
 	private List<Pedido> pedidos = new ArrayList<>();
 
