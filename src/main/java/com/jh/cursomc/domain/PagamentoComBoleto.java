@@ -4,13 +4,16 @@ import java.util.Date;
 
 import javax.persistence.Entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.jh.cursomc.domain.enums.EstadoPagamento;
 @Entity
 public class PagamentoComBoleto extends Pagamento{
 	
 	private static final long serialVersionUID = 1L;
 	
+	@JsonFormat(pattern = "dd/MM/yyyy") // Estou formando a data para sair somente dia/mes e ano e a hora do pedido 
 	private Date datadeVencimento;
+	@JsonFormat(pattern = "dd/MM/yyyy") // Estou formando a data para sair somente dia/mes e ano e a hora do pedido 
 	private Date dataPagamento;
 	
 	
